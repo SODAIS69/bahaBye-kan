@@ -11,48 +11,61 @@
 
 //個人化設定
 
-    //簡體字留言的處理方式
-    /*
-    如果修改 filterStyle 後面的數字成
-        1   文字會改成「根據相關法律該留言已經被隱藏了。」
-        2   文字會被消失
-    */
-    var filterStyle=1;
+//簡體字留言的處理方式
+/*
+如果修改 filterStyle 後面的數字成
+    1   文字會改成「根據相關法律該留言已經被隱藏了。」
+    2   文字會被消失
+*/
+var filterStyle = 1;
+
+//
+
+
+
+var filterStr = ' ';
+if (filterStyle == 1) {
+    filterStr = '「⚠️根據相關法律該留言已經被隱藏了。⚠️」';
+} else {
+    filterStr = ' ';
+}
 
 
 
 
-    var  filterStr=' ';
-    if(filterStyle==1){
-        filterStr='「⚠️根據相關法律該留言已經被隱藏了。⚠️」';
-    }else{
-        filterStr=' ';
-    }
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     GM_log('hello world');
 
-   var self  = animefun;
-  while(self.danmuLoaded!=true){
-  GM_log('waiting');
-    }
-  var danmu=self.danmu;
+    var self = animefun;
 
+    var checkExist = setInterval(function () {
+        if (self.danmuLoaded == true) {
+            console.log("Got danmu");
+            parseDanmu();
+            clearInterval(checkExist);
+        }
+    }, 100);
 
-  GM_log('subs length:'+danmu.length);
-for(var i=0;i<danmu.length;i++){
-  var innersub=danmu[i]['text'];
-
-    //GM_log('i='+i+':'+innersub);
-
-    Object.keys(TongWen_st).every(key=>{
-       var searchResult=innersub.indexOf(key);
-      if(searchResult!=-1){
-          GM_log('Simplified Chinese found! content:'+innersub+" Bingo word:"+innersub.substr(searchResult,1));
-          danmu[i]['text']=filterStr;
-        return false;
-      }else{
-        return true;
-      }
-  });
-}
 }, false);
+
+function parseDanmu() {
+
+    var self = animefun;
+    var danmu = self.danmu;
+
+    GM_log('subs length:' + danmu.length);
+    for (var i = 0; i < danmu.length; i++) {
+        var innersub = danmu[i]['text'];
+        //GM_log('i='+i+':'+innersub);
+        Object.keys(TongWen_st).every(key => {
+            var searchResult = innersub.indexOf(key);
+            if (searchResult != -1) {
+                GM_log('Simplified Chinese found! content:' + innersub + " Bingo word:" + innersub.substr(searchResult, 1));
+                danmu[i]['text'] = filterStr;
+                return false;
+            } else {
+                return true;
+            }
+        });
+    }
+}
