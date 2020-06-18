@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         bahaBye-kan - 巴哈8簡
+// @name         bahaBye-kan - 動畫瘋簡字ㄅㄅ
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  💡過濾巴哈姆特動畫瘋簡體字彈幕用腳本⚾
@@ -11,7 +11,7 @@
 
 //個人化設定
 
-//簡體字留言的處理方式
+//🛠簡體字留言的處理方式🛠
 /*
 如果修改 filterStyle 後面的數字成
     1   文字會改成「根據相關法律該留言已經被隱藏了。」
@@ -19,8 +19,12 @@
 */
 var filterStyle = 1;
 
-//
 
+
+
+//consloe log?
+//
+var clog=true;
 
 
 var filterStr = ' ';
@@ -31,16 +35,15 @@ if (filterStyle == 1) {
 }
 
 
-
-
 window.addEventListener('load', function () {
-    GM_log('hello world');
+    clog?GM_log('hello world'):clog=false ;
 
     var self = animefun;
 
     var checkExist = setInterval(function () {
         if (self.danmuLoaded == true) {
-            console.log("Got danmu");
+            
+            clog?console.log("Got danmu"):clog=false ;
             parseDanmu();
             clearInterval(checkExist);
         }
@@ -52,16 +55,19 @@ function parseDanmu() {
 
     var self = animefun;
     var danmu = self.danmu;
-
-    GM_log('subs length:' + danmu.length);
+    clog?GM_log('subs length:' + danmu.length):clog=false ;
+    
     for (var i = 0; i < danmu.length; i++) {
         var innersub = danmu[i]['text'];
         //GM_log('i='+i+':'+innersub);
         Object.keys(TongWen_st).every(key => {
             var searchResult = innersub.indexOf(key);
             if (searchResult != -1) {
-                GM_log('Simplified Chinese found! content:' + innersub + " Bingo word:" + innersub.substr(searchResult, 1));
+                clog?GM_log('Simplified Chinese found! content:' + innersub + " Bingo word:" + innersub.substr(searchResult, 1)):clog=false ;
+                
                 danmu[i]['text'] = filterStr;
+                danmu[i]['size']=0;
+                danmu[i]['color']='#ff6565';
                 return false;
             } else {
                 return true;
