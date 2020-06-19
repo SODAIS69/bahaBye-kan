@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         bahaBye-kan - 動畫瘋彈幕簡體字ㄅㄅ
+// @name         bahaBye-kan - 動畫瘋彈幕過濾器
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  💡過濾巴哈姆特動畫瘋簡體字彈幕用腳本⚾
@@ -19,7 +19,9 @@
 */
 var filterStyle = 1;
 
+var blockWord=2;
 
+var filterWord={0:'屏蔽',1:'遮蔽',2:'隱藏',3:'阻擋',4:'消失'};
 
 
 //consloe log?
@@ -29,7 +31,7 @@ var clog=true;
 
 var filterStr = ' ';
 if (filterStyle == 1) {
-    filterStr = '「⚠️根據相關法律該留言已經被隱藏了。⚠️」';
+    filterStr = '「⚠️根據相關法律該留言已經被'+filterWord[blockWord]+'了。⚠️」';
 } else {
     filterStr = ' ';
 }
