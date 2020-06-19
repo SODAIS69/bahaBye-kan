@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         bahaBye-kan - 動畫瘋簡字ㄅㄅ
+// @name         bahaBye-kan - 動畫瘋簡體字ㄅㄅ
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  💡過濾巴哈姆特動畫瘋簡體字彈幕用腳本⚾
