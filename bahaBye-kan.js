@@ -20,8 +20,14 @@
 var filterStyle = 1;
 
 var blockWord=2;
-
 var filterWord={0:'屏蔽',1:'遮蔽',2:'隱藏',3:'阻擋',4:'消失'};
+
+
+//在陣列內放入輸入regex即可加入過濾器中
+var regexList=['\d','\D' ];
+//改為true即可啟用regex過濾器
+var regexEnable=false;
+
 
 
 //consloe log?
@@ -67,15 +73,26 @@ function parseDanmu() {
             if (searchResult != -1) {
                 clog?GM_log('Simplified Chinese found! content:' + innersub + " Bingo word:" + innersub.substr(searchResult, 1)):clog=false ;
                 
-                danmu[i]['text'] = filterStr;
-                danmu[i]['size']=0;
-                danmu[i]['color']='#ff6565';
+                animefun.danmu[i]['text'] = filterStr;
+                animefun.danmu[i]['size']=0;
+                animefun.danmu[i]['color']='#ff6565';
                 return false;
             } else {
                 return true;
             }
         });
+
+        if (regexEnable){
+            parseRegex();
+        }
     }
+}
+function parseRegex(danmuStr){
+
+        regexList.every(regex=>{
+            var re= new RegExp(regex);
+
+        });
 }
 
 //todo regex
