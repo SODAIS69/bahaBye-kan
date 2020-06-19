@@ -75,3 +75,5 @@ function parseDanmu() {
         });
     }
 }
+
+//todo regex
