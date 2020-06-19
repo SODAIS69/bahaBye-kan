@@ -67,9 +67,9 @@ function parseDanmu() {
             if (searchResult != -1) {
                 clog?GM_log('Simplified Chinese found! content:' + innersub + " Bingo word:" + innersub.substr(searchResult, 1)):clog=false ;
                 
-                danmu[i]['text'] = filterStr;
-                danmu[i]['size']=0;
-                danmu[i]['color']='#ff6565';
+                animefun.danmu[i]['text'] = filterStr;
+                animefun.danmu[i]['size']=0;
+                animefun.danmu[i]['color']='#ff6565';
                 return false;
             } else {
                 return true;
