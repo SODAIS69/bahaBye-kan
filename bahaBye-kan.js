@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         bahaBye-kan - 動畫瘋彈幕過濾器
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  💡過濾巴哈姆特動畫瘋簡體字彈幕用腳本⚾
 // @author       sodais69
 // @match        https://ani.gamer.com.tw/animeVideo.php*
